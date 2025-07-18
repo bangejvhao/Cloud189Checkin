@@ -7,7 +7,7 @@ on:
     types: started
   workflow_dispatch:
   schedule:
-    - cron: 35 2 * * *
+    - cron: 0 0 * * *
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -35,13 +35,13 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: .token
-          key: ${{ runner.os }}-cache-token
-          restore-keys: ${{ runner.os }}-cache-token-
+          key: $键：${{ runner.os }}-缓存令牌{{ runner.os }}-cache-token
+          restore-keys: $恢复密钥：${{ runner.os }}-缓存令牌-{{ runner.os }}-cache-token-
 
-      - name: 🔧 Init secrets
-        uses: shine1594/secrets-to-env-action@master
-        with:
-          secrets: ${{ toJSON(secrets) }}
+      - name: 🔧 Init secrets- 名称：🔧 初始化密钥
+        uses: shine1594/secrets-to-env-action@master使用：shine1594/secrets-to-env-action@master
+        with   与:
+          secrets   秘密: $机密信息：${{ toJSON(secrets) }}{{ toJSON(secrets) }}
           secrets_env: production
           prefix_prod: ""
           file_name_prod: .env
@@ -51,15 +51,15 @@ jobs:
 
       - name: 🚀 Run
         uses: nick-fields/retry@master
-        with:
+        with   与:
           timeout_minutes: 30
           max_attempts: 3
-          command: npm start
+          command: npm start   命令：NPM start
       
       - name: 📹 Save cached Cookie
         uses: actions/cache/save@v4
         with:
-          path: .token
+          path: .token   路径:.token
           key: ${{ runner.os }}-cache-token-${{ hashFiles('.token/*.json') }}
 
       - name: 🚗 Keep Running
